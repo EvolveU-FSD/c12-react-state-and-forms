@@ -20,9 +20,11 @@ export default function PlanView({ plan, returnToList}) {
 
     return (
         <div style={{ background: "red"}}>
-            { !editing && <PlanDetail plan={plan} startEditing={startEditing}/> }
+            { !editing && <>
+                <PlanDetail plan={plan} startEditing={startEditing}/>
+                <button onClick={() => returnToList()}>Return to List</button>
+            </> }
             { editing && <PlanEdit plan={plan} cancelEditing={cancelEditing} save={save}/> }
-            <button onClick={() => returnToList()}>Return to List</button>
         </div>
     )
 }
