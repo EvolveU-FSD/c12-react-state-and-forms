@@ -20,7 +20,7 @@ export default function PlansPage() {
       <div>
         <h1>Plans Page</h1>
         { !selectedPlan && <PlanList selectPlan={selectPlan} /> }
-        { selectedPlan && <PlanView plan={selectedPlan} returnToList={returnToList} /> }
+        { selectedPlan && <PlanView planId={selectedPlan.id} returnToList={returnToList} /> }
       </div>
     )
   }

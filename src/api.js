@@ -31,6 +31,6 @@ export async function getPlanById(id) {
     return plans.find((plan) => plan.id === id)
 }
 
-export async function savePlan(plan) {
+export async function updatePlan(plan) {
     return plans[plan.id] = plan
 }

@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import PlanDetail from "./PlanDetail"
 import PlanEdit from "./PlanEdit"
+import { getPlanById, updatePlan } from "./api"
 
-export default function PlanView({ plan, returnToList}) {
+export default function PlanView({ planId, returnToList}) {
     const [editing, setEditing] = useState(false)
+    const [plan, setPlan] = useState({name: '', rewards: '', fee: '', interestRate: ''})
 
     function startEditing() {
         setEditing(true)
@@ -13,10 +15,25 @@ export default function PlanView({ plan, returnToList}) {
         setEditing(false)
     }
 
-    function save(newPlanDetail) {
+    async function save(newPlanDetail) {
         // do something awesome here
         console.log('I have been asked to save', newPlanDetail)
+        const newPlan = await updatePlan({
+            id: plan.id,
+            ...newPlanDetail
+        })
+        setPlan(newPlan)
+        setEditing(false)
     }
+
+    async function loadPlan() {
+        const plan = await getPlanById(planId)
+        setPlan(plan)
+    }
+
+    useEffect(() => {
+        loadPlan()
+    }, [planId])
 
     return (
         <div style={{ background: "red"}}>
