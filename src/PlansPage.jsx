@@ -11,7 +11,7 @@ export default function PlansPage() {
     }
 
     function returnToList() {
-        console.log("Clearing selected plan", plan)
+        console.log("Clearing selected plan")
         setSelectedPlan()
     }
 
